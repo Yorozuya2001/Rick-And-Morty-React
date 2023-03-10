@@ -1,13 +1,21 @@
-import {
-  ButtonSearch,
-  InputSearch,
-} from "./style-searchBar";
+import { useState } from "react";
+import { Button, Input } from "./style-searchBar";
 
 export default function SearchBar({ onSearch }) {
+  const [id, setId] = useState("");
+
+  const handleChange = (event) => {
+    setId(event.target.value);
+  };
+
   return (
     <div>
-      <InputSearch type="search" placeholder="Buscar personaje..." />
-      <ButtonSearch onClick={(id) => onSearch(id)}>Agregar</ButtonSearch>
+      <Input
+        type="search"
+        onChange={handleChange}
+        placeholder="Buscar personaje..."
+      />
+      <Button onClick={() => onSearch(id)}>Agregar</Button>
     </div>
   );
 }

@@ -6,14 +6,22 @@ const DivCard = styled.div`
   margin: 32px 0;
   max-width: 360px;
   height: auto;
-  border: 3px solid black;
+  border: 3px solid #b543fd;
   border-radius: 10px;
   background-color: white;
   color: black;
+  text-align: center;
+  transition: all 0.35s ease-in-out;
+
+  &:hover {
+    border-color: #04b6fe;
+    transform: scale(1.1, 1.1);
+  }
 `;
 
 const ButtonCard = styled.button`
   align-self: flex-end;
+  border: 0;
   background-color: #b543fd;
   border-radius: 50%;
   color: white;
