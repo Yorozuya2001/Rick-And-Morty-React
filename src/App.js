@@ -39,12 +39,18 @@ function App() {
 
   return (
     <>
-      <Nav onSearch={onSearch} />
+      <Nav />
       <div className="backGroundColor App">
         <Routes>
           <Route
             path="/home"
-            element={<Cards characters={characters} onClose={onClose} />}
+            element={
+              <Cards
+                characters={characters}
+                onClose={onClose}
+                onSearch={onSearch}
+              />
+            }
           />
           <Route path="/about" element={<About />} />
           <Route path="/detail/:detailId" element={<Detail />} />

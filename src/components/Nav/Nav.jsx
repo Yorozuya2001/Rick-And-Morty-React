@@ -1,15 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import SearchBar from "../SearchBar/SearchBar";
-import { NavStyle } from "./style-nav";
+import { NavStyle, StyledNavLink } from "./style-nav";
 
-const Nav = ({ onSearch }) => {
+const Nav = () => {
   return (
     <>
       <NavStyle>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/home">Home</NavLink>
-        <SearchBar onSearch={onSearch} />
+        <StyledNavLink to="/about">About</StyledNavLink>
+        <StyledNavLink to="/home">Home</StyledNavLink>
       </NavStyle>
     </>
   );

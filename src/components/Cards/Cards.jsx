@@ -1,23 +1,29 @@
 import Card from "../Card/Card";
-import { DivContainer } from "./style-cards";
+import { DivContainer, SearchBarDivContainer } from "./style-cards";
+import SearchBar from "../SearchBar/SearchBar";
 
-export default function Cards(props) {
-  const { characters } = props;
+export default function Cards({ characters, onClose, onSearch }) {
   return (
-    <DivContainer>
-      {characters.map(({ id, name, species, gender, image }) => {
-        return (
-          <Card
-            key={id}
-            id = {id}
-            name={name}
-            species={species}
-            gender={gender}
-            image={image}
-            onClose={props.onClose}
-          />
-        );
-      })}
-    </DivContainer>
+    <>
+      <SearchBarDivContainer>
+        <SearchBar onSearch={onSearch} characters={characters} />{" "}
+      </SearchBarDivContainer>
+
+      <DivContainer>
+        {characters.map(({ id, name, species, gender, image }) => {
+          return (
+            <Card
+              key={id}
+              id={id}
+              name={name}
+              species={species}
+              gender={gender}
+              image={image}
+              onClose={onClose}
+            />
+          );
+        })}
+      </DivContainer>
+    </>
   );
 }

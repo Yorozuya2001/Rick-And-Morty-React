@@ -12,11 +12,17 @@ const Button = styled.button`
     background-color: #04b6fe;
     border-color: #04b6fe;
   }
+
+  &.buttonRandom {
+    margin-left: 32px;
+  }
 `;
 
 const Input = styled.input`
   padding: 8px 16px;
   border: 0;
+  width: 30%;
+  height: 50px;
 
   &:focus-visible {
     outline: #b543fd;
