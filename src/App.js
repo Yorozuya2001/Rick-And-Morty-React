@@ -5,6 +5,8 @@ import Nav from "./components/Nav/Nav";
 import "./App.css";
 import About from "./components/view/About/About.jsx";
 import Detail from "./components/view/Detail/Detail.jsx";
+import Form from "./components/Form/Form.jsx";
+import Favorites from "./components/Favorites/Favorites.jsx";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -37,11 +39,23 @@ function App() {
       });
   };
 
+  const getRandomCharacter = () => {
+    const randomID = Math.floor(Math.random() * (826 - 1) + 1);
+
+    if (characters.some((character) => character.id === randomID)) {
+      return getRandomCharacter();
+    } else {
+      onSearch(randomID);
+    }
+  };
+
   return (
     <>
       <Nav />
       <div className="backGroundColor App">
         <Routes>
+          <Route path="/" element={<Form />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route
             path="/home"
             element={
@@ -49,6 +63,7 @@ function App() {
                 characters={characters}
                 onClose={onClose}
                 onSearch={onSearch}
+                getRandomCharacter={getRandomCharacter}
               />
             }
           />

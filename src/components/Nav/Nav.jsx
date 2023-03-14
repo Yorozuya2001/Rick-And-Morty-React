@@ -5,8 +5,9 @@ const Nav = () => {
   return (
     <>
       <NavStyle>
-        <StyledNavLink to="/about">About</StyledNavLink>
         <StyledNavLink to="/home">Home</StyledNavLink>
+        <StyledNavLink to="/favorites">Favorites</StyledNavLink>
+        <StyledNavLink to="/about">About</StyledNavLink>
       </NavStyle>
     </>
   );

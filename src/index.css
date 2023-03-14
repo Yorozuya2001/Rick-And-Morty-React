@@ -5,11 +5,15 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+}
+
+html {
   cursor: url("./assets/cursor/rick-and-morty-portal-gun-cursor-32x32.png"),
     pointer;
 }
 
-a:hover, button:hover {
+a:hover,
+button:hover {
   cursor: url("./assets/cursor/rick-and-morty-rick-sanchez-portal-gun-pointer-32x32.png"),
     pointer;
 }

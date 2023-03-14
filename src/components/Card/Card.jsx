@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   StyledNavLink,
   DivCard,
@@ -5,16 +6,58 @@ import {
   Image,
   H2Card,
 } from "./style-card";
+import { useDispatch, useSelector } from "react-redux";
+import { addToFavorites, removeToFavorites } from "../redux/actions";
 
+const Card = ({ id, name, species, gender, image, onClose }) => {
+  const [isFav, setIsFav] = useState(false);
+  const dispatch = useDispatch();
+  const myFavorites = useSelector((state) => state.myFavorites);
+  console.log(myFavorites);
 
-export default function Card({ id, name, species, gender, image, onClose }) {
+  useEffect(() => {
+    myFavorites.forEach((fav) => {
+      if (fav.id === id) {
+        setIsFav(true);
+      }
+    });
+  }, [myFavorites]);
+
+  const handleFavorite = () => {
+    if (isFav) {
+      setIsFav(false);
+      dispatch(removeToFavorites(id));
+    } else {
+      setIsFav(true);
+      dispatch(
+        addToFavorites({
+          id,
+          name,
+          species,
+          gender,
+          image,
+          onClose,
+        })
+      );
+    }
+  };
+
   return (
     <DivCard>
-      <ButtonCard onClick={() => onClose(id)}>X</ButtonCard>
+      <div>
+        {isFav ? (
+          <ButtonCard onClick={handleFavorite}>❤️</ButtonCard>
+        ) : (
+          <ButtonCard onClick={handleFavorite}>🤍</ButtonCard>
+        )}
+        <ButtonCard onClick={() => onClose(id)}>X</ButtonCard>
+      </div>
       <Image src={image} alt={name} />
       <StyledNavLink to={`/detail/${id}`}>{name}</StyledNavLink>
       <H2Card>Especie: {species}</H2Card>
       <H2Card>Género: {gender}</H2Card>
     </DivCard>
   );
-}
+};
+
+export default Card;
