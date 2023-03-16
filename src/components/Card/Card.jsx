@@ -9,11 +9,10 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites, removeToFavorites } from "../redux/actions";
 
-const Card = ({ id, name, species, gender, image, onClose }) => {
+const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
   const [isFav, setIsFav] = useState(false);
   const dispatch = useDispatch();
   const myFavorites = useSelector((state) => state.myFavorites);
-  console.log(myFavorites);
 
   useEffect(() => {
     myFavorites.forEach((fav) => {
@@ -50,7 +49,7 @@ const Card = ({ id, name, species, gender, image, onClose }) => {
         ) : (
           <ButtonCard onClick={handleFavorite}>🤍</ButtonCard>
         )}
-        <ButtonCard onClick={() => onClose(id)}>X</ButtonCard>
+        {!isInFav && <ButtonCard onClick={() => onClose(id)}>X</ButtonCard>}
       </div>
       <Image src={image} alt={name} />
       <StyledNavLink to={`/detail/${id}`}>{name}</StyledNavLink>

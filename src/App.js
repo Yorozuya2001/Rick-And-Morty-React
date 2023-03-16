@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+
 import Cards from "./components/Cards/Cards.jsx";
 import Nav from "./components/Nav/Nav";
 import "./App.css";
@@ -10,6 +11,16 @@ import Favorites from "./components/Favorites/Favorites.jsx";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [access, setAccess] = useState(false);
+
+  let { pathname } = useLocation();
+  const navigate = useNavigate();
+  const username = "ejemplo@gmail.com";
+  const password = "1password";
+
+  useEffect(() => {
+    !access && navigate("/");
+  }, [access]);
 
   const onClose = (id) => {
     const arrFilter = [...characters];
@@ -26,7 +37,9 @@ function App() {
   };
 
   const onSearch = (id) => {
-    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+    const URL_BASE = "https://be-a-rym.up.railway.app/api",
+      API_KEY = "738a72766c9f.da2fc0c3ddbe8477c91a";
+    fetch(`${URL_BASE}/character/${id}?key=${API_KEY}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.id && !idExist(data.id)) {
@@ -49,12 +62,19 @@ function App() {
     }
   };
 
+  const login = (userData) => {
+    if (userData.password === password && userData.username === username) {
+      setAccess(true);
+      navigate("/home");
+    }
+  };
+
   return (
     <>
-      <Nav />
+      {pathname !== "/" && <Nav />}
       <div className="backGroundColor App">
         <Routes>
-          <Route path="/" element={<Form />} />
+          <Route path="/" element={<Form login={login} />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route
             path="/home"

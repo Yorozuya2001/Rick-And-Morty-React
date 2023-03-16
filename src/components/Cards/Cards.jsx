@@ -29,6 +29,7 @@ export default function Cards({
               gender={gender}
               image={image}
               onClose={onClose}
+              isInFav={false}
             />
           );
         })}

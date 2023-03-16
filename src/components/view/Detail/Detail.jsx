@@ -8,7 +8,9 @@ const Detail = () => {
   const { detailId } = useParams();
 
   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
+    const URL_BASE = "https://be-a-rym.up.railway.app/api",
+      API_KEY = "738a72766c9f.da2fc0c3ddbe8477c91a";
+    fetch(`${URL_BASE}/character/${detailId}?key=${API_KEY}`)
       .then((response) => response.json())
       .then((char) => {
         if (char.name) {

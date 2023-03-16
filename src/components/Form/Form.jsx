@@ -2,7 +2,7 @@ import { useState } from "react";
 import { validation } from "./Validation";
 import { StyledForm } from "./style-form";
 import { StyledDiv } from "./style-form";
-const Form = () => {
+const Form = ({ login }) => {
   const [userData, setUserData] = useState({
     username: "",
     password: "",
@@ -22,6 +22,11 @@ const Form = () => {
       ...errors,
       [name]: validation({ [name]: value })[name],
     });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login(userData);
   };
 
   return (
@@ -47,7 +52,7 @@ const Form = () => {
         <span>{errors.password}</span>
       </StyledDiv>
       <StyledDiv>
-        <button>Login</button>
+        <button onClick={handleSubmit}>Login</button>
       </StyledDiv>
     </StyledForm>
   );
