@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Card from "../Card/Card";
+import Card from "../view/Card/Card";
 import { DivContainer } from "./style-favorites";
-import { orderCards, filterCards } from "../redux/actions";
+import { orderCards, filterCards } from "../../redux/actions";
 
 const Favorites = () => {
   const myFavorites = useSelector((state) => state.myFavorites);

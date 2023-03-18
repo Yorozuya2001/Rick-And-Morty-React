@@ -1,4 +1,4 @@
-import Card from "../Card/Card";
+import Card from "../view/Card/Card";
 import { DivContainer, SearchBarDivContainer } from "./style-cards";
 import SearchBar from "../SearchBar/SearchBar";
 

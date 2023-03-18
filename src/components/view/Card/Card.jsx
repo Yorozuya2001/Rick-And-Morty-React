@@ -7,7 +7,7 @@ import {
   H2Card,
 } from "./style-card";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorites, removeToFavorites } from "../redux/actions";
+import { addToFavorites, removeToFavorites } from "../../../redux/actions";
 
 const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
   const [isFav, setIsFav] = useState(false);
