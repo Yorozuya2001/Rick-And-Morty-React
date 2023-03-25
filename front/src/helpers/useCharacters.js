@@ -18,9 +18,9 @@ const useCharacters = () => {
   };
 
   const onSearch = (id) => {
-    const URL_BASE = "https://be-a-rym.up.railway.app/api",
-      API_KEY = "738a72766c9f.da2fc0c3ddbe8477c91a";
-    fetch(`${URL_BASE}/character/${id}?key=${API_KEY}`)
+    const URL_BASE = "http://localhost:3001/rickandmorty/onsearch";
+
+    fetch(`${URL_BASE}/character/${id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.id && !idExist(data.id)) {
@@ -34,7 +34,11 @@ const useCharacters = () => {
   };
 
   const getRandomCharacter = () => {
-    const randomID = Math.floor(Math.random() * (826 - 1) + 1);
+    const randomID = Math.floor(Math.random() * (5 - 1) + 1);
+
+    if (characters.length === 4) {
+      return alert("Has agregado a todos los personajes");
+    }
 
     if (characters.some((character) => character.id === randomID)) {
       return getRandomCharacter();

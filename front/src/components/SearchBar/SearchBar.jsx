@@ -3,12 +3,10 @@ import { Button, Input } from "./style-searchBar";
 
 export default function SearchBar({ onSearch, getRandomCharacter }) {
   const [id, setId] = useState("");
-
+ 
   const handleChange = (event) => {
     setId(event.target.value);
   };
-
- 
 
   return (
     <>

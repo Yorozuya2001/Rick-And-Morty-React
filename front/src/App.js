@@ -1,16 +1,21 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
+// Components
 import Cards from "./components/Cards/Cards.jsx";
 import Nav from "./components/view/Nav/Nav";
-import "./App.css";
 import About from "./components/view/About/About.jsx";
 import Detail from "./components/view/Detail/Detail.jsx";
 import Form from "./components/Form/Form.jsx";
 import Favorites from "./components/Favorites/Favorites.jsx";
 import Error from "./components/view/Error/Error.jsx";
+
+//Helpers
 import useAuthentication from "./helpers/useAuthentication.js";
 import useCharacters from "./helpers/useCharacters.js";
+
+//Styles
+import "./App.css";
 
 function App() {
   let { pathname } = useLocation();
