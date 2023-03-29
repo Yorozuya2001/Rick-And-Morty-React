@@ -1,27 +1,45 @@
 const axios = require("axios");
 
-const getCharDetail = (res, id) => {
+const URL_BASE = "https://be-a-rym.up.railway.app/api";
+const API_KEY = "738a72766c9f.da2fc0c3ddbe8477c91a";
+
+const getCharDetail = async (req, res) => {
+  try {
+    const response = await axios.get(
+      `${URL_BASE}/character/${req.params.id}?key=${API_KEY}`
+    );
+    const data = response.data;
+    const { id, image, name, gender, species, origin } = data;
+    res.status(200).json({
+      id,
+      image,
+      name,
+      gender,
+      species,
+      origin,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+/* const getCharDetail = (req, res) => {
+  const { id } = req.params;
   axios
-    .get(`https://rickandmortyapi.com/api/character/${id}`)
+    .get(`${URL_BASE}/character/${id}?key=${API_KEY}`)
     .then((response) => {
-      const { image, name, gender, origin, status, species } = response.data;
-      const obj = {
+      const { id, image, name, gender, species, origin } = response.data;
+
+      res.status(200).json({
+        id,
         image,
         name,
         gender,
-        origin,
-        status,
         species,
-      };
-
-      res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(obj));
-      return;
+        origin,
+      });
     })
-    .catch((error) => {
-      res.writeHead(500, { "Content-Type": "text/plain" });
-      res.end(error.message);
-    });
-};
+    .catch((err) => res.status(500).json({ error: err.message }));
+}; */
 
 module.exports = getCharDetail;

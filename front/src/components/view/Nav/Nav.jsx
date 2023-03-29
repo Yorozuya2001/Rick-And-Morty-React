@@ -1,17 +1,20 @@
 import React from "react";
-import { NavStyle, StyledNavLink } from "./style-nav";
+import { NavStyle, StyledNavLink, StyledDiv, NavHeader } from "./style-nav";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Nav = ({ logout }) => {
   return (
-    <>
+    <NavHeader>
       <NavStyle>
-        <button onClick={logout}>Logout</button>
         <StyledNavLink to="/home">Home</StyledNavLink>
-        <StyledNavLink to="/noexiste">404 test</StyledNavLink>
         <StyledNavLink to="/favorites">Favorites</StyledNavLink>
         <StyledNavLink to="/about">About</StyledNavLink>
       </NavStyle>
-    </>
+      <StyledDiv onClick={logout}>
+        <LogoutIcon />
+        Logout
+      </StyledDiv>
+    </NavHeader>
   );
 };
 

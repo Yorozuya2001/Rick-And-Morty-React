@@ -1,25 +1,16 @@
-const http = require("http");
-const getCharById = require("./controllers/getCharById");
-const getCharDetail = require("./controllers/getCharDetail");
-
+const express = require("express");
+const cors = require("cors");
+const morgan = require("morgan");
+const router = require("./routes/index");
+const server = express();
 const PORT = 3001;
 
-http
-  .createServer((req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    if (req.url.includes("onsearch")) {
-      const id = req.url.split("/").at(-1);
-      getCharById(res, id);
-      return;
-    }
+server.use(cors());
+server.use(morgan("dev"));
+server.use(express.json());
 
-    if (req.url.includes("detail")) {
-      const id = req.url.split("/").at(-1);
-      getCharDetail(res, id);
-      return;
-    }
+server.use("/", router);
 
-    res.writeHead(404, { "Content-Type": "text/plain" });
-    res.end("404 route not found");
-  })
-  .listen(PORT, "localhost");
+server.listen(PORT, () => {
+  console.log("Server raised in port " + PORT);
+});

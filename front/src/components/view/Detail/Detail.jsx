@@ -8,9 +8,9 @@ const Detail = () => {
   const { detailId } = useParams();
 
   useEffect(() => {
-    const URL_BASE = "http://localhost:3001/rickandmorty/detail";
+    const URL_BASE = "http://localhost:3001";
 
-    fetch(`${URL_BASE}/character/${detailId}`)
+    fetch(`${URL_BASE}/detail/${detailId}`)
       .then((response) => response.json())
       .then((char) => {
         if (char.name) {

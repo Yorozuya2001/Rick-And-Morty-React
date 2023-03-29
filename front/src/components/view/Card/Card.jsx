@@ -6,13 +6,45 @@ import {
   Image,
   H2Card,
 } from "./style-card";
-import { useDispatch, useSelector } from "react-redux";
-import { addToFavorites, removeToFavorites } from "../../../redux/actions";
+import { useSelector } from "react-redux";
 
 const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
   const [isFav, setIsFav] = useState(false);
-  const dispatch = useDispatch();
   const myFavorites = useSelector((state) => state.myFavorites);
+
+  const addToFavorites = async (character) => {
+    try {
+      const config = {
+        method: "POST",
+        body: JSON.stringify(character),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      let response = await fetch(
+        "http://localhost:3001/rickandmorty/fav",
+        config
+      );
+      console.log("date send: ", response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeToFavorites = async (id) => {
+    try {
+      let response = await fetch(
+        `http://localhost:3001/rickandmorty/fav/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      console.log("date send: ", response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     myFavorites.forEach((fav) => {
@@ -25,19 +57,16 @@ const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
   const handleFavorite = () => {
     if (isFav) {
       setIsFav(false);
-      dispatch(removeToFavorites(id));
+      removeToFavorites(id);
     } else {
       setIsFav(true);
-      dispatch(
-        addToFavorites({
-          id,
-          name,
-          species,
-          gender,
-          image,
-          onClose,
-        })
-      );
+      addToFavorites({
+        id,
+        name,
+        species,
+        gender,
+        image,
+      });
     }
   };
 

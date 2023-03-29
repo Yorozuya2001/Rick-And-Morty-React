@@ -18,9 +18,9 @@ const useCharacters = () => {
   };
 
   const onSearch = (id) => {
-    const URL_BASE = "http://localhost:3001/rickandmorty/onsearch";
+    const URL_BASE = "http://localhost:3001";
 
-    fetch(`${URL_BASE}/character/${id}`)
+    fetch(`${URL_BASE}/onsearch/${id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.id && !idExist(data.id)) {
@@ -30,13 +30,14 @@ const useCharacters = () => {
             ? alert("No se permiten duplicados")
             : alert("El id no existe");
         }
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   const getRandomCharacter = () => {
-    const randomID = Math.floor(Math.random() * (5 - 1) + 1);
+    const randomID = Math.floor(Math.random() * (827 - 1) + 1);
 
-    if (characters.length === 4) {
+    if (characters.length === 827) {
       return alert("Has agregado a todos los personajes");
     }
 

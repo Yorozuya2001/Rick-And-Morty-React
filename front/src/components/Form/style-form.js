@@ -1,5 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
+const bounce = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
 export const StyledDivForm = styled.div`
   position: absolute;
   top: 30%;
@@ -67,4 +78,11 @@ export const StyledButton = styled.button`
   &.buttonRandom {
     margin-left: 32px;
   }
+`;
+
+export const StyledImage = styled.img`
+  max-width: 40%;
+  height: auto;
+  margin-left: 64px;
+  animation: ${bounce} 5s infinite;
 `;
