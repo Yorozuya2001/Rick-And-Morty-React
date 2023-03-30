@@ -1,13 +1,21 @@
 import Card from "../view/Card/Card";
 import SearchBar from "../SearchBar/SearchBar";
 import { DivContainer, SearchBarDivContainer } from "./style-cards";
-
+import { useDispatch } from "react-redux";
+import { getFavorites } from "../../redux/actions";
+import { useEffect } from "react";
 export default function Cards({
   characters,
   onClose,
   onSearch,
   getRandomCharacter,
 }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFavorites());
+  }, []);
+
   return (
     <>
       <SearchBarDivContainer>

@@ -11,7 +11,20 @@ const bounce = keyframes`
     transform: scale(1);
   }
 `;
-export const StyledDivForm = styled.div`
+
+const sombraNeon = keyframes`
+    0% {
+      box-shadow: 0 0 5px #b543fd, 0 0 10px #b543fd, 0 0 15px #b543fd, 0 0 20px #b543fd, 0 0 25px #b543fd, 0 0 30px #b543fd, 0 0 35px #b543fd, 0 0 40px #b543fd;
+    }
+    50% {
+         box-shadow: 0 0 5px #04b6fe, 0 0 10px #04b6fe, 0 0 15px #04b6fe, 0 0 20px #04b6fe, 0 0 25px #04b6fe, 0 0 30px #04b6fe, 0 0 35px #04b6fe, 0 0 40px #04b6fe;
+    }
+    100% {
+      box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #fff, 0 0 30px #fff, 0 0 35px #fff, 0 0 40px #fff;
+    }
+`;
+
+/* export const StyledDivForm = styled.div`
   position: absolute;
   top: 30%;
   left: 50%;
@@ -23,14 +36,17 @@ export const StyledDivForm = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`; */
 
 export const StyledForm = styled.form`
-  width: inherit;
+  width: 25%;
   padding: 20px;
   margin: 20px;
-  background-color: #00000090;
+  background-color: #000000;
   border-radius: 10px;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff,
+    0 0 25px #fff, 0 0 30px #fff, 0 0 35px #fff, 0 0 40px #fff;
+  animation: ${sombraNeon} 3s ease-in-out infinite alternate;
 `;
 
 export const StyledDiv = styled.div`
@@ -38,6 +54,11 @@ export const StyledDiv = styled.div`
   flex-direction: column;
   width: 100%;
   margin: 32px 0;
+
+  span {
+    color: white;
+    margin-top: 16px;
+  }
 `;
 
 export const StyledLabel = styled.label`
@@ -49,6 +70,7 @@ export const StyledLabel = styled.label`
 export const StyledInput = styled.input`
   padding: 8px 16px;
   border: 0;
+  border-radius: 5px;
   width: 100%;
   height: 30px;
 
@@ -66,8 +88,10 @@ export const StyledButton = styled.button`
   color: white;
   font-size: 1.2rem;
   border: 2px solid #b543fd;
+  border-radius: 5px;
   padding: 8px 16px;
   cursor: pointer;
+
   transition: all 0.35s ease-in-out;
 
   &:hover {
@@ -81,8 +105,17 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledImage = styled.img`
-  max-width: 40%;
+  max-width: 25%;
   height: auto;
-  margin-left: 64px;
+  margin-left: 72px;
   animation: ${bounce} 5s infinite;
+`;
+
+export const StyledDivContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
 `;

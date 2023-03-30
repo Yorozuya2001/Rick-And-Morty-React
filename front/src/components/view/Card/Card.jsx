@@ -6,12 +6,13 @@ import {
   Image,
   H2Card,
 } from "./style-card";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getFavorites } from "../../../redux/actions";
 
 const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
   const [isFav, setIsFav] = useState(false);
   const myFavorites = useSelector((state) => state.myFavorites);
-
+  const dispatch = useDispatch();
   const addToFavorites = async (character) => {
     try {
       const config = {
@@ -22,11 +23,9 @@ const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
         },
       };
 
-      let response = await fetch(
-        "http://localhost:3001/rickandmorty/fav",
-        config
-      );
-      console.log("date send: ", response);
+      await fetch("http://localhost:3001/rickandmorty/fav", config);
+      console.log("date send");
+      dispatch(getFavorites());
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +39,8 @@ const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
           method: "DELETE",
         }
       );
-      console.log("date send: ", response);
+     
+      dispatch(getFavorites());
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +71,7 @@ const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
   };
 
   return (
-    <DivCard>
+    <DivCard >
       <div>
         {isFav ? (
           <ButtonCard onClick={handleFavorite}>❤️</ButtonCard>

@@ -3,6 +3,7 @@ import {
   FILTER,
   ORDER,
   REMOVE_TO_FAVORITES,
+  GET_FAVORITES,
 } from "./actions";
 
 const initialState = {
@@ -13,11 +14,16 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   const { allCharacters } = state;
   switch (action.type) {
+    case GET_FAVORITES:
+      return {
+        ...state,
+        myFavorites: action.payload,
+        allCharacters: action.payload,
+      };
     case ADD_TO_FAVORITES:
       return {
         ...state,
         myFavorites: [...state.myFavorites, action.payload],
-        allCharacters: [...state.allCharacters, action.payload],
       };
     case REMOVE_TO_FAVORITES:
       return {
