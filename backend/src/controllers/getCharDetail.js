@@ -9,7 +9,8 @@ const getCharDetail = async (req, res) => {
       `${URL_BASE}/character/${req.params.id}?key=${API_KEY}`
     );
     const data = response.data;
-    const { id, image, name, gender, species, origin } = data;
+    const { id, image, name, gender, species, origin, status, location } = data;
+    console.log(data);
     res.status(200).json({
       id,
       image,
@@ -17,29 +18,12 @@ const getCharDetail = async (req, res) => {
       gender,
       species,
       origin,
+      status,
+      location,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
-
-/* const getCharDetail = (req, res) => {
-  const { id } = req.params;
-  axios
-    .get(`${URL_BASE}/character/${id}?key=${API_KEY}`)
-    .then((response) => {
-      const { id, image, name, gender, species, origin } = response.data;
-
-      res.status(200).json({
-        id,
-        image,
-        name,
-        gender,
-        species,
-        origin,
-      });
-    })
-    .catch((err) => res.status(500).json({ error: err.message }));
-}; */
 
 module.exports = getCharDetail;

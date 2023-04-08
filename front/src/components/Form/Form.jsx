@@ -15,8 +15,8 @@ const Form = ({ login }) => {
     useUserValidation();
 
   return (
-    <StyledDivContainer>
-      <StyledForm action="">
+    <StyledDivContainer portatil>
+      <StyledForm portatil tablet phone action="">
         <StyledDiv>
           <StyledLabel htmlFor="">Username:</StyledLabel>
           <StyledInput
@@ -43,7 +43,7 @@ const Form = ({ login }) => {
           </StyledButton>
         </StyledDiv>
       </StyledForm>
-      <StyledImage src={ImageSource} alt="image" />
+      <StyledImage portatil tablet src={ImageSource} alt="image" />
     </StyledDivContainer>
   );
 };

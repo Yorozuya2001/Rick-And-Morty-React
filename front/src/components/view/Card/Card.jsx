@@ -5,9 +5,11 @@ import {
   ButtonCard,
   Image,
   H2Card,
+  StyledFavoriteIcon,
 } from "./style-card";
 import { useSelector, useDispatch } from "react-redux";
 import { getFavorites } from "../../../redux/actions";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
   const [isFav, setIsFav] = useState(false);
@@ -39,7 +41,7 @@ const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
           method: "DELETE",
         }
       );
-     
+
       dispatch(getFavorites());
     } catch (error) {
       console.log(error);
@@ -71,14 +73,22 @@ const Card = ({ id, name, species, gender, image, onClose, isInFav }) => {
   };
 
   return (
-    <DivCard >
+    <DivCard>
       <div>
         {isFav ? (
-          <ButtonCard onClick={handleFavorite}>❤️</ButtonCard>
+          <ButtonCard onClick={handleFavorite}>
+            <StyledFavoriteIcon isFav={isFav} />
+          </ButtonCard>
         ) : (
-          <ButtonCard onClick={handleFavorite}>🤍</ButtonCard>
+          <ButtonCard onClick={handleFavorite}>
+            <StyledFavoriteIcon isFav={isFav} />
+          </ButtonCard>
         )}
-        {!isInFav && <ButtonCard onClick={() => onClose(id)}>X</ButtonCard>}
+        {!isInFav && (
+          <ButtonCard onClick={() => onClose(id)}>
+            <DeleteForeverIcon />
+          </ButtonCard>
+        )}
       </div>
       <Image src={image} alt={name} />
       <StyledNavLink to={`/detail/${id}`}>{name}</StyledNavLink>

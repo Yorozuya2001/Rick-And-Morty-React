@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export const DivCard = styled.div`
   display: flex;
@@ -62,4 +63,8 @@ export const StyledNavLink = styled(NavLink)`
   &:hover {
     color: #04b6fe;
   }
+`;
+
+export const StyledFavoriteIcon = styled(FavoriteIcon)`
+  color: ${(props) => (props.isFav ? "#000" : "#ffffff")};
 `;

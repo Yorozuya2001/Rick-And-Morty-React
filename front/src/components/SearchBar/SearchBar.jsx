@@ -3,7 +3,7 @@ import { Button, Input } from "./style-searchBar";
 
 export default function SearchBar({ onSearch, getRandomCharacter }) {
   const [id, setId] = useState("");
- 
+
   const handleChange = (event) => {
     setId(event.target.value);
   };
@@ -15,8 +15,15 @@ export default function SearchBar({ onSearch, getRandomCharacter }) {
         onChange={handleChange}
         placeholder="Buscar personaje..."
       />
-      <Button onClick={() => onSearch(id)}>Agregar</Button>
-      <Button className="buttonRandom" onClick={getRandomCharacter}>
+      <Button tablet phone onClick={() => onSearch(id)}>
+        Agregar
+      </Button>
+      <Button
+        portatil
+        phone
+        className="buttonRandom"
+        onClick={getRandomCharacter}
+      >
         Agregar personaje random
       </Button>
     </>
